@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ORDER>
+   <ORDER_HEADER>
+      <CONTROL_INFO>
+         <GENERATOR_INFO>athome</GENERATOR_INFO>
+         <GENERATION_DATE>2014-10-08</GENERATION_DATE>
+      </CONTROL_INFO>
+      <ORDER_INFO>
+         <ORDER_ID>ORDER_202410-001</ORDER_ID>
+         <ORDER_DATE>2024-10-08</ORDER_DATE>
+         <PARTIES>
+            <PARTY>
+               <PARTY_ID>S123</PARTY_ID>
+               <PARTY_ROLE>supplier</PARTY_ROLE>
+               <ADDRESS>
+                  <NAME>The Supplier</NAME>
+                  <STREET>Pod Lipami 999</STREET>
+                  <ZIP>11111</ZIP>
+                  <CITY>Praha</CITY>
+                  <COUNTRY_CODED>CZ</COUNTRY_CODED>
+               </ADDRESS>
+            </PARTY>
+            <PARTY>
+               <PARTY_ID>B456</PARTY_ID>
+               <PARTY_ROLE>buyer</PARTY_ROLE>
+               <ADDRESS>
+                  <NAME>The Buyer</NAME>
+                  <STREET>Pod Javory 999</STREET>
+                  <ZIP>11111</ZIP>
+                  <CITY>Praha</CITY>
+                  <COUNTRY_CODED>CZ</COUNTRY_CODED>
+               </ADDRESS>
+            </PARTY>
+            <PARTY>
+               <PARTY_ID>D789</PARTY_ID>
+               <PARTY_ROLE>delivery</PARTY_ROLE>
+               <ADDRESS>
+                  <NAME>The Delivery</NAME>
+                  <STREET>Pod Duby 999</STREET>
+                  <ZIP>11111</ZIP>
+                  <CITY>Praha</CITY>
+                  <COUNTRY_CODED>CZ</COUNTRY_CODED>
+               </ADDRESS>
+            </PARTY>
+         </PARTIES>
+         <CURRENCY>CZK</CURRENCY>
+      </ORDER_INFO>
+   </ORDER_HEADER>
+   <ORDER_ITEM_LIST>
+      <ORDER_ITEM>
+         <LINE_ITEM_ID>00001</LINE_ITEM_ID>
+         <PRODUCT_ID>
+            <SUPPLIER_PID>123001</SUPPLIER_PID>
+            <INTERNATIONAL_PID>6047686127469</INTERNATIONAL_PID>
+            <DESCRIPTION_SHORT>Product One</DESCRIPTION_SHORT>
+         </PRODUCT_ID>
+         <QUANTITY>10</QUANTITY>
+         <ORDER_UNIT>PCE</ORDER_UNIT>
+      </ORDER_ITEM>
+      <ORDER_ITEM>
+         <LINE_ITEM_ID>00002</LINE_ITEM_ID>
+         <PRODUCT_ID>
+            <SUPPLIER_PID>123002</SUPPLIER_PID>
+            <INTERNATIONAL_PID>7793983921645</INTERNATIONAL_PID>
+            <DESCRIPTION_SHORT>Product Two</DESCRIPTION_SHORT>
+         </PRODUCT_ID>
+         <QUANTITY>20</QUANTITY>
+         <ORDER_UNIT>PCE</ORDER_UNIT>
+      </ORDER_ITEM>
+      <ORDER_ITEM>
+         <LINE_ITEM_ID>00003</LINE_ITEM_ID>
+         <PRODUCT_ID>
+            <SUPPLIER_PID>123003</SUPPLIER_PID>
+            <INTERNATIONAL_PID>3392246399006</INTERNATIONAL_PID>
+            <DESCRIPTION_SHORT>Product Three</DESCRIPTION_SHORT>
+         </PRODUCT_ID>
+         <QUANTITY>30</QUANTITY>
+         <ORDER_UNIT>PCE</ORDER_UNIT>
+      </ORDER_ITEM>
+   </ORDER_ITEM_LIST>
+   <ORDER_SUMMARY>
