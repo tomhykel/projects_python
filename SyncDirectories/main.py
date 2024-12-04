@@ -14,7 +14,7 @@ def log_and_print(log_directory, message):
     """
     print(message)
     with open(f"{log_directory}/sync_log.txt", mode="a") as file:
-        file.write(f"{message}\n")  # Write to file, append mode
+        file.write(f"{message}\n")
 
 
 def define_interval():
@@ -49,10 +49,9 @@ def define_directories():
     :return: source directory, destination directory, log directory
     """
     print("Please define absolute paths to source and destination directories and the directory to store the log file.")
-    src_dir = verify_directory(input("Source (original) directory: \n"))
-    dst_dir = verify_directory(input("Destination (replica) directory: \n"))
-    log_dir = verify_directory(input("Log file directory: \n"))
-
+    src_dir = verify_directory(input("Source (original) directory:\n"))
+    dst_dir = verify_directory(input("Destination (replica) directory:\n"))
+    log_dir = verify_directory(input("Log file directory:\n"))
     return src_dir, dst_dir, log_dir
 
 
@@ -79,12 +78,29 @@ def synchronise_directories(source: str, destination: str, log_directory: str) -
     msg = f"{datetime.now()} Synchronization started"
     log_and_print(log_directory, msg)
 
+    # Source directory not found (option a)
+    # Terminate the program in case the source directory does not exist anymore
+    if not os.path.exists(source):
+        msg = f"{datetime.now()} ERROR: Source directory {source} not found"
+        log_and_print(log_directory, msg)
+        raise OSError(msg)
+
+    # # Source directory not found (option b)
+    # # Keep the program running, but do not proceed with the synchronization until source directory restored
+    # try:
+    #     if not os.path.exists(source):
+    #         raise OSError(f"Source directory {source} not found")
+    # except OSError as e:
+    #     msg = f"{datetime.now()} ERROR: {e}\n"
+    #     log_and_print(log_directory, msg)
+    #     return
+
     # Step 1: Synchronise files and directories (copy new and modified files from the source directory)
     for root, dirs, files in os.walk(source):
         relative_path = os.path.relpath(root, source)
         dst_path = os.path.join(destination, relative_path)
 
-        # Create new subdirectory in destination
+        # Create new subdirectories
         if not os.path.exists(dst_path):
             os.makedirs(dst_path)
 
@@ -103,8 +119,7 @@ def synchronise_directories(source: str, destination: str, log_directory: str) -
                     log_and_print(log_directory, msg)
             else:
                 if file_hash(src_file) == file_hash(dst_file):          # Existing file - no change
-                    msg = f"{datetime.now()} Existing file {file} checked, no changes in {src_file}"
-                    log_and_print(log_directory, msg)
+                    pass
                 else:                                                   # Existing file - modified
                     try:
                         shutil.copy2(src_file, dst_file)
@@ -126,7 +141,7 @@ def synchronise_directories(source: str, destination: str, log_directory: str) -
             if not os.path.exists(src_dir):
                 try:
                     shutil.rmtree(dst_dir)
-                    msg = f"{datetime.now()} Abandoned directory /{subdir} removed from {dst_dir}"
+                    msg = f"{datetime.now()} Abandoned directory /{subdir} removed from path {dst_dir}"
                     log_and_print(log_directory, msg)
                 except (shutil.Error, OSError) as e:
                     msg = f"{datetime.now()} ERROR: Directory {subdir} cannot be removed: {e.filename} - {e.strerror}"
@@ -139,7 +154,7 @@ def synchronise_directories(source: str, destination: str, log_directory: str) -
             if not os.path.exists(src_file):
                 try:
                     os.remove(dst_file)
-                    msg = f"{datetime.now()} Abandoned file {file} removed from {dst_file}"
+                    msg = f"{datetime.now()} Abandoned file {file} removed from path {dst_file}"
                     log_and_print(log_directory, msg)
                 except (shutil.Error, OSError) as e:
                     msg = f"{datetime.now()} ERROR: File {file} cannot be removed: {e.filename} - {e.strerror}"
